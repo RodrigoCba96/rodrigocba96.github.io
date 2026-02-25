@@ -1,27 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-size-huge: 35vw;
+}
 
 :root {
-  background-color: #000;
-  color: #fff;
+  --background: #ffffff;
+  --foreground: #000000;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background-color: #000;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-::selection {
-  background-color: #fff;
-  color: #000;
+section {
+  position: relative;
+  background: white;
 }
