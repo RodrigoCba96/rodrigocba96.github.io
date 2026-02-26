@@ -1,15 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --font-size-huge: 35vw;
+  /* Definimos tamaños de fuente proporcionales al ancho de pantalla (vw) */
+  --font-size-huge: 28vw;
+  --font-size-display: 5rem;
 }
 
+/* Forzamos el reset para el estilo brutalista */
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
+  background-color: #ffffff; /* Iniciamos en blanco como la referencia */
+  color: #000000;
 }
 
-section {
-  position: relative;
-  background: white;
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Evitamos que los links tengan el azul por defecto */
+a {
+  color: inherit;
+  text-decoration: none;
 }
