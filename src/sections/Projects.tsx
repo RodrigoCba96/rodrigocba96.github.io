@@ -1,4 +1,10 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -22,8 +28,32 @@ const projects = [
 ];
 
 const Projects = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    // EFECTO PAGE TURN: Revelación de abajo hacia arriba pisando la sección anterior
+    gsap.fromTo(sectionRef.current, 
+      { clipPath: "inset(100% 0% 0% 0%)" }, 
+      {
+        clipPath: "inset(0% 0% 0% 0%)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom", 
+          end: "top top",
+          scrub: true,
+        }
+      }
+    );
+  }, { scope: sectionRef });
+
   return (
-    <section id="proyectos" className="bg-black text-white py-32 px-6">
+    <section 
+      ref={sectionRef} 
+      id="proyectos" 
+      // Agregamos relative, z-40 y una sombra para el efecto de hoja física
+      className="relative z-40 min-h-screen bg-black text-white py-32 px-6 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
+    >
       <div className="mb-20">
         <span className="text-sm uppercase tracking-tighter text-zinc-500">Selección de Proyectos</span>
       </div>
@@ -44,7 +74,6 @@ const Projects = () => {
               </div>
             </div>
             
-            {/* Efecto de imagen flotante (visto en 00:07 del video) */}
             <motion.div 
               whileHover={{ scale: 1.05, rotate: 2 }}
               className="absolute -top-20 right-1/4 w-64 h-80 bg-zinc-900 z-[-1] opacity-0 group-hover:opacity-100 transition-opacity duration-500 grayscale overflow-hidden"
