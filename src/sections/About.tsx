@@ -10,12 +10,11 @@ const About = () => {
   const contentRef = useRef(null);
 
   useGSAP(() => {
-    // 1. EFECTO PAGE TURN (Revelación Vertical)
-    // Usamos clip-path para que la sección se revele de abajo hacia arriba
+  
     gsap.fromTo(sectionRef.current, 
-      { clipPath: "inset(100% 0% 0% 0%)" }, // Empieza oculta abajo
+      { clipPath: "inset(100% 0% 0% 0%)" }, 
       {
-        clipPath: "inset(0% 0% 0% 0%)",      // Se revela completa
+        clipPath: "inset(0% 0% 0% 0%)",     
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -26,7 +25,7 @@ const About = () => {
       }
     );
 
-    // 2. ANIMACIÓN DE TEXTO (Efecto de aparición suave)
+    // ANIMACIÓN DE TEXTO 
     gsap.from(contentRef.current, {
       y: 100,
       opacity: 0,
@@ -39,8 +38,6 @@ const About = () => {
       }
     });
 
-    // 3. ASEGURAR TEMA LIGHT (Blanco)
-    // Por si el usuario viene de scrollear desde una sección oscura
     ScrollTrigger.create({
       trigger: sectionRef.current,
       start: "top center",
@@ -64,7 +61,6 @@ const About = () => {
     >
       <div ref={contentRef} className="max-w-6xl w-full">
         
-        {/* Etiqueta de sección estilo editorial */}
         <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40 mb-12 block">
           (01) Filosofía & Enfoque
         </span>
@@ -74,7 +70,6 @@ const About = () => {
           Busco la <span className="italic font-light">excelencia técnica</span> en sistemas que impactan directamente en la vida de las personas.
         </h2>
 
-        {/* Línea divisoria fina que respeta tu index.css */}
         <div className="w-full h-[1px] my-16 bg-current opacity-10" />
 
         <div className="flex flex-col md:flex-row justify-between items-start gap-12">
@@ -82,7 +77,6 @@ const About = () => {
             Desde la <span className="font-bold text-current">reducción del 60% en la latencia de APIs</span> hasta la creación de librerías que aceleran el desarrollo, mi enfoque siempre es la escalabilidad y el rendimiento extremo para proyectos críticos como <span className="italic">HSI (Historia de Salud Integrada)</span>.
           </p>
           
-          {/* Métricas rápidas al costado */}
           <div className="flex flex-col gap-4 text-right">
             <div className="border-l-2 border-current pl-4">
               <span className="block text-3xl font-black">-60%</span>
