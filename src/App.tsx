@@ -4,7 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import Lenis from '@studio-freight/lenis';
 
-// Importación de Secciones
 import Hero from './sections/Hero';
 import Experience from './sections/Experience';
 import Stack from './sections/Stack';
@@ -18,7 +17,6 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const containerRef = useRef<HTMLElement>(null);
 
-  // 1. Scroll Suave con Lenis
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -37,10 +35,9 @@ function App() {
     };
   }, []);
 
-  // 2. Lógica de Animaciones (Pinning + Colores)
+  // Animaciones
   useGSAP(() => {
     // --- EFECTO PÁGINA DE LIBRO ---
-    // Fijamos la sección Hero para que lo demás suba encima
     ScrollTrigger.create({
       trigger: ".hero-wrapper",
       start: "top top",
@@ -48,7 +45,7 @@ function App() {
       pinSpacing: false,
     });
 
-    // --- CAMBIO DE COLORES POR SECCIÓN ---
+    // --- CAMBIO DE COLORES POR SECCIONN ---
     const sections = gsap.utils.toArray<HTMLElement>('.section-wrapper');
 
     sections.forEach((section) => {
@@ -84,12 +81,10 @@ function App() {
       ref={containerRef} 
       className="bg-black text-white antialiased transition-colors duration-500 min-h-screen"
     >
-      {/* Marcamos el Hero con hero-wrapper para el efecto de libro */}
       <div className="section-wrapper hero-wrapper" data-bg="#ffffff" data-text="#000000">
         <Hero />
       </div>
       
-      {/* Secciones que tapan al Hero al subir */}
       <div className="relative z-30 shadow-[0_-50px_100px_rgba(0,0,0,0.1)]">
         <div className="section-wrapper" data-bg="#ffffff" data-text="#000000">
           <Experience />
@@ -108,17 +103,50 @@ function App() {
         </div>
         
         <footer 
-          className="h-screen flex flex-col justify-center px-6 bg-white text-black section-wrapper" 
+          className="relative flex flex-col px-[5vw] py-24 bg-white text-black section-wrapper z-40" 
           data-bg="#ffffff" 
           data-text="#000000"
         >
-          <span className="text-sm uppercase tracking-tighter">(04) Contacto</span>
-          <h2 className="text-display font-black leading-none mt-4 hover:italic transition-all cursor-pointer">
-            HABLEMOS.
-          </h2>
-          <div className="mt-20 flex gap-10 font-bold">
-            <a href="https://linkedin.com/in/rodrigocordoba2296/" target="_blank" rel="noreferrer">LINKEDIN</a>
-            <a href="mailto:rodrigocordoba2296@gmail.com">EMAIL</a>
+          <div className="flex flex-col">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40 mb-12 block">
+              (04) Contacto
+            </span>
+            
+            <a href="mailto:rodrigocordoba2296@gmail.com" className="group inline-block w-fit">
+              <h2 className="text-7xl md:text-[3vw] font-black leading-[0.8] tracking-tighter transition-all duration-500 group-hover:italic group-hover:translate-x-6 group-hover:text-black/70">
+                HABLEMOS.
+              </h2>
+            </a>
+          </div>
+
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-16 border-t border-black/10 pt-12 mt-16">
+            
+            <div className="flex flex-col gap-6">
+               <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">
+                 Conectemos
+               </span>
+               <div className="flex gap-12 text-sm md:text-base font-bold uppercase tracking-widest">
+                <a href="https://linkedin.com/in/rodrigocordoba2296/" target="_blank" rel="noreferrer" className="hover:opacity-50 transition-opacity">
+                  LinkedIn
+                </a>
+                <a href="mailto:rodrigocordoba2296@gmail.com" className="hover:opacity-50 transition-opacity">
+                  Email
+                </a>
+              </div>
+            </div>
+
+            <div className="flex flex-col md:items-end gap-6 text-left md:text-right">
+               <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">
+                 Ubicación
+               </span>
+               <p className="text-sm md:text-base font-medium text-black/80 uppercase tracking-widest leading-relaxed">
+                 La Rioja, Argentina <br />
+                 <span className="text-xs font-light tracking-normal normal-case opacity-60">
+                   © {new Date().getFullYear()} Rodrigo Cordoba. Todos los derechos reservados.
+                 </span>
+               </p>
+            </div>
+
           </div>
         </footer>
       </div>
