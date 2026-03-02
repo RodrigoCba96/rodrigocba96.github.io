@@ -21,9 +21,7 @@ const Hero = () => {
   useGSAP(() => {
     let mm = gsap.matchMedia();
 
-    // ==========================================
-    // 💻 ANIMACIÓN ESCRITORIO (> 768px)
-    // ==========================================
+
     mm.add("(min-width: 768px)", () => {
       const tl = gsap.timeline({
         scrollTrigger: {

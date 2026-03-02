@@ -1,4 +1,10 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
   "FRONTEND: ANGULAR & REACT",
@@ -8,15 +14,36 @@ const skills = [
 ];
 
 const Stack = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    gsap.fromTo(sectionRef.current, 
+      { clipPath: "inset(100% 0% 0% 0%)" }, 
+      {
+        clipPath: "inset(0% 0% 0% 0%)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom", 
+          end: "top top",
+          scrub: true,
+        }
+      }
+    );
+  }, { scope: sectionRef });
+
   return (
-    <section className="relative z-40 min-h-screen bg-[#0a0a0a] text-zinc-100 py-32 px-[5vw] overflow-hidden">
+    <section 
+      ref={sectionRef}
+      className="relative z-40 min-h-screen bg-[#0a0a0a] text-zinc-100 py-32 px-[5vw] shadow-[0_-20px_50px_rgba(0,0,0,0.8)]"
+    >
       
       <div className="mb-24">
         <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 block mb-4">
           Herramientas
         </span>
         <h2 className="text-xs uppercase tracking-widest text-zinc-400">
-          (03) Stack Tecnológico
+          Stack Tecnológico
         </h2>
       </div>
       
@@ -24,14 +51,14 @@ const Stack = () => {
         {skills.map((skill, index) => (
           <div 
             key={index} 
-            className="overflow-hidden border-b border-white/10 py-8 md:py-12 group cursor-default hover:bg-white/[0.02] transition-colors duration-700"
+            className="overflow-hidden border-b border-white/10 py-8 md:py-10 group cursor-default hover:bg-white/[0.02] transition-colors duration-700"
           >
             <motion.h3 
               initial={{ y: "100%" }}
               whileInView={{ y: 0 }}
               transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-black leading-none tracking-tighter text-zinc-300 transition-all duration-500 group-hover:italic group-hover:translate-x-6 group-hover:text-white"
+              className="text-xl md:text-3xl font-black leading-none tracking-tighter text-zinc-300 transition-all duration-500 group-hover:italic group-hover:translate-x-4 group-hover:text-white"
             >
               {skill}
             </motion.h3>

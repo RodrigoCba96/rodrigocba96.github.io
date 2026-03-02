@@ -19,7 +19,6 @@ const projects = [
     description: "Plataforma de autogestión de turnos y visualización de datos médicos.",
     tag: "(02)",
     link: "https://portalsalud.larioja.gob.ar/login"
-    
   },
   {
     title: "CLIMA APP",
@@ -85,26 +84,26 @@ const Projects = () => {
         </h2>
       </div>
 
-{/* Grilla */}
-
-     <div className="flex flex-col border-t border-white/10">
+      {/* Grilla */}
+      <div className="flex flex-col border-t border-white/10">
         {projects.map((project, index) => (
           <a 
             key={index} 
             href={project.link}
             target="_blank" 
             rel="noopener noreferrer"
-            className="group block cursor-pointer border-b border-white/10 py-12 md:py-16 hover:bg-white/[0.02] transition-colors duration-700">
+            className="group block cursor-pointer border-b border-white/10 py-8 md:py-10 hover:bg-white/[0.02] transition-colors duration-700">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-              <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-16">
+              
+              <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
                 <span className="text-xs font-medium text-zinc-600 group-hover:text-zinc-300 transition-colors duration-500">
                   {project.tag}
                 </span>
                 <div>
-                  <h3 className="text-3xl md:text-5xl font-black leading-none tracking-tighter transition-all duration-500 group-hover:italic group-hover:translate-x-4">
+                  <h3 className="text-xl md:text-3xl font-black leading-none tracking-tighter transition-all duration-500 group-hover:italic group-hover:translate-x-4">
                     {project.title}
                   </h3>
-                  <p className="text-[10px] uppercase tracking-[0.2em] mt-3 text-zinc-500 group-hover:text-zinc-300 transition-colors duration-500">
+                  <p className="text-[10px] uppercase tracking-[0.2em] mt-2 text-zinc-500 group-hover:text-zinc-300 transition-colors duration-500">
                     {project.category}
                   </p>
                 </div>
